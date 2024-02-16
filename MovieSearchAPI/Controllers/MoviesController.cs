@@ -23,8 +23,8 @@ namespace MovieSearchAPI.Controllers
             try
             {
                 var httpClient = _httpClientFactory.CreateClient();
-                var uri = $"http://www.omdbapi.com/?apikey=d05aeeac&s={s}";
-                //var uri = $"http://www.omdbapi.com/?apikey={process.env.NEXT_PUBLIC_API_KEY}&${searchQuery}";
+                var apiKey = Environment.GetEnvironmentVariable("API_KEY");
+                var uri = $"http://www.omdbapi.com/?apikey={apiKey}&s={s}";
 
                 var response = await httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
